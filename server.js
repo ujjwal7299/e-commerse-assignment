@@ -66,7 +66,11 @@ app.get('/logout', (req, res) => {
 });
 
 // Start Server and Auto-Open in Browser
-app.listen(4000, () => {
-  console.log(' Server running at http://localhost:4000');
-  import('open').then(open => open.default('http://localhost:4000'));
+// app.listen(4000, () => {
+//   console.log(' Server running at http://localhost:4000');
+//   import('open').then(open => open.default('http://localhost:4000'));
+// });
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
