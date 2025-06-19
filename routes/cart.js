@@ -7,8 +7,8 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
+    user: "singhdairy72@gmail.com",
+    pass: "kqmh tart gekj hymg"
   }
 });
 
@@ -42,7 +42,7 @@ router.post('/checkout', async (req, res) => {
   const cart = await Cart.findOne({ userId: req.session.user._id });
   const userEmail = req.session.user.email;
   await transporter.sendMail({
-    from: process.env.EMAIL_USER,
+    from: "singhdairy72@gmail.com",
     to: userEmail,
     subject: 'Order Confirmation',
     text: `Thanks for your purchase. Your order is confirmed! Shipping to: ${address}`
