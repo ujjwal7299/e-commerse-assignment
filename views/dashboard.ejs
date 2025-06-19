@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-100 to-blue-200 min-h-screen flex items-center justify-center font-sans">
+
+  <div class="bg-white shadow-xl rounded-lg p-8 w-full max-w-md text-center">
+    <h2 class="text-2xl font-bold text-gray-800 mb-2">Welcome, <%= user.email %>!</h2>
+    <p class="text-gray-600 mb-6">You are logged in as <span class="font-semibold"><%= user.role %></span>.</p>
+
+    <div class="flex flex-col gap-3">
+      <a href="/products" class="bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">🛍️ View Products</a>
+      <a href="/cart" class="bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">🛒 View Cart</a>
+      <a href="/logout" class="bg-red-500 text-white py-2 rounded hover:bg-red-600 transition">🚪 Logout</a>
+    </div>
+  </div>
+
+</body>
+</html>
