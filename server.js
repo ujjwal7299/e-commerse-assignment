@@ -1,4 +1,4 @@
-// //require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('./db');
 const session = require('express-session');
@@ -20,7 +20,9 @@ app.use('/cart', cartRoutes);
 
 // Login Page
 app.get('/login', (req, res) => {
-  res.render('login');
+  const error = req.session.error;
+  req.session.error = null; // Clear error after displaying
+  res.render('login', { error });
 });
 
 // Handle Login
@@ -28,7 +30,10 @@ app.post('/login', async (req, res) => {
   const User = require('./models/User');
   const { email, password } = req.body;
   const user = await User.findOne({ email, password });
-  if (!user) return res.send(' Invalid email or password');
+  if (!user) {
+    req.session.error = 'Invalid email or password';
+    return res.redirect('/login');
+  }
   req.session.user = user.toObject();
   res.redirect('/dashboard');
 });
