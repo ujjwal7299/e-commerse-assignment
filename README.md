@@ -29,6 +29,4 @@ This is a simple e-commerce web application built with Node.js, Express, MongoDB
 - `views/` - EJS templates
 - `server.js` - Main server file
 
-## License
 
-MIT
