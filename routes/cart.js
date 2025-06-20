@@ -52,4 +52,20 @@ router.post('/checkout', async (req, res) => {
   res.render('cart', { items: [], total: 0, success: 'Checkout complete! Your order has been placed.' });
 });
 
+router.post('/decrement/:productId', async (req, res) => {
+  if (!req.session.user) return res.redirect('/login');
+  const { productId } = req.params;
+  let cart = await Cart.findOne({ userId: req.session.user._id });
+  if (!cart) return res.redirect('/cart');
+  const idx = cart.items.findIndex(i => i.productId.toString() === productId);
+  if (idx > -1) {
+    cart.items[idx].qty -= 1;
+    if (cart.items[idx].qty <= 0) {
+      cart.items.splice(idx, 1);
+    }
+    await cart.save();
+  }
+  res.redirect('/cart');
+});
+
 module.exports = router;
